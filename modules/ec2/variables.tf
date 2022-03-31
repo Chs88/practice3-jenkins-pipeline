@@ -67,3 +67,12 @@ variable "create_eip" {
   description = "Wether to create an Eip or not"
   
 }
+
+
+variable "project_name" {
+
+  type = string
+
+  description = "The name of the project"
+  
+}
