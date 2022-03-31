@@ -10,7 +10,7 @@ resource "aws_instance" "project_instance" {
 
   subnet_id = var.subnet
   
-  vpc_security_group_ids = var.security_groups
+  # security_groups = ""
 
   tags = { ##tag everything for easy code readability
 
