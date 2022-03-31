@@ -17,5 +17,7 @@ module "jenkins-server" {
 
   subnet = aws_subnet.main_subnet.id
 
+  user_data = file("./scripts/install_apps.sh")
 
+  key_name = "main-key-terra"
 }

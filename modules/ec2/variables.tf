@@ -67,3 +67,13 @@ variable "project_name" {
   description = "The name of the project"
   
 }
+
+variable "user_data" {
+  
+  
+}
+
+variable "key_name" {
+
+  
+}

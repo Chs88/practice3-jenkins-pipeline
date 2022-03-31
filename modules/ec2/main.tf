@@ -12,6 +12,10 @@ resource "aws_instance" "project_instance" {
   
   # security_groups = ""
 
+  user_data = var.user_data
+
+  key_name = var.key_name
+
   tags = { ##tag everything for easy code readability
 
     Name = "${var.project_name}-${var.infra_env}-${var.ec2_role}"
