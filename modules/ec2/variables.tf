@@ -58,22 +58,25 @@ variable security_groups {
   default = []
 }
 
+variable "create_eip" {
 
-
-variable "project_name" {
-
-  type = string
-
-  description = "The name of the project"
+  type = bool
+  
+  default = false
+  
+  description = "Wether to create an Eip or not"
   
 }
 
 variable "user_data" {
-  
+
   
 }
 
-variable "key_name" {
+variable "associate_public_ip_address" {
 
-  
+  type = bool
+
+  description = "Boolean for wether to associate a public ip with the instance"
+
 }

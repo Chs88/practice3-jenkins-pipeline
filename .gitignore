@@ -14,3 +14,4 @@
 # to change depending on the environment.
 *.tfvars
 *.tfvars.json
+/scripts/main-key-terra.pem
