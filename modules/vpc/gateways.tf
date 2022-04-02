@@ -4,13 +4,13 @@ resource "aws_internet_gateway" "internet_gw" {
   vpc_id = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "Project1-${var.infra_env}-internet_gateway"
+    Name = "${var.project_name}-${var.infra_env}-internet_gateway"
 
     Environment = var.infra_env
 
     VPC = aws_vpc.main_vpc.id
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
   }
@@ -35,9 +35,9 @@ resource "aws_eip" "nat_eip" {
 
   tags = {
 
-    Name = "Project1-${var.infra_env}-eip"
+    Name = "${var.project_name}-${var.infra_env}-eip"
 
-    Project = "Project1"
+    Project = var.project_name
 
     Environment = var.infra_env
 
@@ -59,9 +59,9 @@ resource "aws_nat_gateway" "nat_gw" {
 
   tags = {
 
-    Name = "Project1-${var.infra_env}-nat_gw"
+    Name = "${var.project_name}-${var.infra_env}-nat_gw"
 
-    Project = "Project1"
+    Project = var.project_name
 
     Environment = var.infra_env
 

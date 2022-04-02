@@ -5,11 +5,11 @@ resource "aws_vpc" "main_vpc" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "Project1-${var.infra_env}-vpc"
+    Name = "${var.project_name}-${var.infra_env}-vpc"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
   }
@@ -28,11 +28,11 @@ resource "aws_subnet" "private" {
   cidr_block = cidrsubnet(var.vpc_cidr,8, 0)
 
   tags = {
-    Name = "Project1-${var.infra_env}-private"
+    Name = "${var.project_name}-${var.infra_env}-private"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
 
@@ -49,11 +49,11 @@ resource "aws_subnet" "public" {
 
   tags = {
    
-    Name = "Project1-${var.infra_env}-public"
+    Name = "${var.project_name}-${var.infra_env}-public"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
 
@@ -74,11 +74,11 @@ resource "aws_route_table" "private_rt" {
 
   tags = {
    
-    Name = "Project1-${var.infra_env}-private-rt"
+    Name = "${var.project_name}-${var.infra_env}-private-rt"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
 
@@ -97,11 +97,11 @@ resource "aws_route_table" "public_rt" {
 
   tags = {
    
-    Name = "Project1-${var.infra_env}-public-rt"
+    Name = "${var.project_name}-${var.infra_env}-public-rt"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
 

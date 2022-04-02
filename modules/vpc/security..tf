@@ -6,7 +6,7 @@
 
 resource "aws_security_group" "public" {
 
-    name = "Project1-${var.infra_env}-public-sg"
+    name = "${var.project_name}-${var.infra_env}-public-sg"
 
     description = "Public internet access for servers"
 
@@ -18,11 +18,11 @@ resource "aws_security_group" "public" {
 
     tags = {
 
-        Name = "Project1-${var.infra_env}-public-sg"
+        Name = "${var.project_name}-${var.infra_env}-public-sg"
 
         Role = "public"
 
-        Project = "Project1"
+        Project = var.project_name
 
         Environment = var.infra_env
 
@@ -113,7 +113,7 @@ resource "aws_security_group_rule" "public_in_https" {
 
 resource "aws_security_group" "private" {
 
-    name = "Project1-${var.infra_env}-private-sg"
+    name = "${var.project_name}-${var.infra_env}-private-sg"
 
     description = "Private internet access for servers"
 
@@ -125,11 +125,11 @@ resource "aws_security_group" "private" {
 
     tags = {
 
-        Name = "Project1-${var.infra_env}-private-sg"
+        Name = "${var.project_name}-${var.infra_env}-private-sg"
 
         Role = "private"
 
-        Project = "Project1"
+        Project = var.project_name
 
         Environment = var.infra_env
 

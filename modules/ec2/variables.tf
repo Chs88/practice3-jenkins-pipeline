@@ -40,6 +40,12 @@ variable "ec2_role" {
 
 }
 
+variable "project_name" {
+
+  type = string
+
+  description = "Name of the project"
+}
 
 variable subnet {
 
@@ -69,6 +75,10 @@ variable "create_eip" {
 }
 
 variable "user_data" {
+
+  description = "To pass on data on startup"
+  
+  default = ""
 
   
 }

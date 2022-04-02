@@ -24,11 +24,11 @@ resource "aws_instance" "project_instance" {
 
   tags = { ##tag everything for easy code readability
 
-    Name = "Project1-${var.infra_env}-${var.ec2_role}"
+    Name = "${var.project_name}-${var.infra_env}-${var.ec2_role}"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
 
@@ -57,11 +57,11 @@ resource "aws_eip" "webserver_eip" {
 
   tags = { ##tag everything for easy code readability
 
-    Name = "Project1-${var.infra_env}-eip"
+    Name = "${var.project_name}-${var.infra_env}-eip"
 
     Environment = var.infra_env
 
-    Project = "Project1"
+    Project = var.project_name
 
     ManagedBy = "Terraform"
 
