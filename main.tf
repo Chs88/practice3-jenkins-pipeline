@@ -77,13 +77,13 @@ module "jenkins_server" {
 
   ec2_role = "jenkins_server"
 
-  subnet = module.vpc.vpc_private_subnet
+  subnet = module.vpc.vpc_public_subnet
 
   create_eip = false
 
-  security_groups = ["${module.vpc.security_group_private}"]
+  security_groups = ["${module.vpc.security_group_jenkins}"]
 
-  # user_data = file("./scripts/database.sh")
+  user_data = file("./scripts/jenkins.sh")
 
   associate_public_ip_address = true
   

@@ -44,3 +44,9 @@ output "security_group_public" {
     value = aws_security_group.public.id
   
 }
+
+output "security_group_jenkins" {
+
+    value = aws_security_group.jenkins.id
+  
+}

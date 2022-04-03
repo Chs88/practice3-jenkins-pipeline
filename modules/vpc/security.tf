@@ -162,7 +162,7 @@ resource "aws_security_group_rule" "private_out" {
 
 resource "aws_security_group_rule" "private_in" {
 
-    type = "ingress" ##Egress means incoming
+    type = "ingress" ##ingress means incoming
 
     from_port = 0
 
@@ -176,4 +176,113 @@ resource "aws_security_group_rule" "private_in" {
 
     security_group_id = aws_security_group.private.id ## assigned to the private security group
   
+}
+
+
+
+##Jenkins server security group and rules
+
+
+resource "aws_security_group" "jenkins" {
+
+    name = "${var.project_name}-${var.infra_env}-jenkins-sg"
+
+    description = "Private internet access for jenkins server"
+
+    vpc_id = aws_vpc.main_vpc.id
+
+
+
+
+
+    tags = {
+
+        Name = "${var.project_name}-${var.infra_env}-jenkins-sg"
+
+        Role = "jenkins"
+
+        Project = var.project_name
+
+        Environment = var.infra_env
+
+        ManagedBy = "terraform"
+    }
+  
+}
+
+
+
+
+resource "aws_security_group_rule" "jenkins_out" {
+
+    type = "egress" ##Egress means outgoing
+
+    from_port = 0
+
+    to_port = 0
+
+    ## Port range 0-0 means all ports
+
+    protocol = "-1" ## means all protocols
+
+    cidr_blocks = ["0.0.0.0/0"] ## means all ipv4 addresses
+
+    security_group_id = aws_security_group.jenkins.id ## assigned to the private security group
+  
+}
+
+
+resource "aws_security_group_rule" "jenkins_in_5000" {
+
+    type = "ingress" 
+
+    from_port = 50000
+
+    to_port = 50000
+
+    ## Port 50000 is the port we aer mapping the Jenkins docker image port
+
+    protocol = "tcp" ## means all protocols
+
+    cidr_blocks = ["0.0.0.0/0"] 
+
+    security_group_id = aws_security_group.jenkins.id 
+  
+}
+
+resource "aws_security_group_rule" "jenkins_in_http" {
+
+    type = "ingress" ##Egress means incoming
+
+    from_port = 8080
+
+    to_port = 8080
+
+    ## Port 8080 is what jenkins uses for GUI
+
+    protocol = "tcp" ## means all protocols
+
+    cidr_blocks = ["0.0.0.0/0"] 
+
+    security_group_id = aws_security_group.jenkins.id 
+  
+}
+
+
+resource "aws_security_group_rule" "jenkins_ssh" {
+
+    type = "ingress" ##ingress means incoming
+
+    from_port = 22
+
+    to_port = 22 
+
+    ## Port 22 = default ssh port
+
+    protocol = "tcp" ## ssh works on tcp protocol
+
+    cidr_blocks = [aws_vpc.main_vpc.cidr_block] ## means only our network
+
+    security_group_id = aws_security_group.jenkins.id 
+
 }
